@@ -26,6 +26,21 @@ const App = () => {
     })
   }
 
+  const sortByVote = (a, b) => {
+    if (a.votes > b.votes) {
+      return -1
+    }
+
+    if (a.votes < b.votes) {
+      return 1
+    }
+
+    return 0;
+  }
+
+  const sortedAnecdotes = anecdotes.sort(sortByVote)
+  console.log('sortedAnecdotes', sortedAnecdotes)
+
   return (
     <div>
       <h2>Anecdotes</h2>
