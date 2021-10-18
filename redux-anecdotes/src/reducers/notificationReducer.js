@@ -12,6 +12,8 @@ const notificationReducer = (state = notificationAtStart, action) => {
       return { message: '' }
     case 'VOTED':
       return { message: `You voted for '${action.anecdote}'` }
+    case 'CREATE_ANECDOTE':
+      return { message: 'New anecdote created'}
     default:
       return state
   }
@@ -28,6 +30,12 @@ export const voteNotification = (anecdote) => {
   return {
     type: 'VOTED',
     anecdote: anecdote
+  }
+}
+
+export const createAnecdoteNotification = () => {
+  return {
+    type: 'CREATE_ANECDOTE'
   }
 }
 
