@@ -1,22 +1,33 @@
-const initialMessage = "You voted"
+const notificationAtStart = {
+  message: "Vote or add a new anecdote",
+  // anecdote: null
+}
 
-const notificationReducer = (state = initialMessage, action) => {
-  console.log('state now: ', state)
+const notificationReducer = (state = notificationAtStart, action) => {
+  // console.log('state now: ', state)
   // console.log('action', action)
 
   switch (action.type) {
-    case 'SUCCESS':
-      console.log('success')
-      return state
+    case 'NONE':
+      return { message: '' }
+    case 'VOTED':
+      return { message: `You voted for '${action.anecdote}'` }
     default:
       return state
   }
 }
 
-export const successNotification = () => {
+export const noNotification = () => {
   return {
-    type: 'SUCCESS',
-    message: 'You added ...'
+    type: 'NONE'
+  }
+}
+
+export const voteNotification = (anecdote) => {
+  console.log('voteNotification - anecdote: ', anecdote)
+  return {
+    type: 'VOTED',
+    anecdote: anecdote
   }
 }
 
