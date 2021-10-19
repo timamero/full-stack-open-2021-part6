@@ -4,7 +4,8 @@ import { voteOnAnecdote } from '../reducers/anecdoteReducer'
 import { voteNotification } from '../reducers/notificationReducer'
 
 const AnecdoteList = () => {
-  const anecdotes = useSelector(state => state.anecdotes)
+  const filter = useSelector(state => state.filter.value)
+  const anecdotes = useSelector(state => state.anecdotes.filter(anecdote => anecdote.content.includes(filter)))
   const dispatch = useDispatch()
 
   const vote = (id) => {
@@ -25,7 +26,8 @@ const AnecdoteList = () => {
     return 0;
   }
 
-  const sortedAnecdotes = anecdotes.sort(sortByVote)
+  let sortedAnecdotes = anecdotes.sort(sortByVote)
+  
   console.log('sortedAnecdotes', sortedAnecdotes)
 
   return (
