@@ -26,7 +26,7 @@ export const noNotification = () => {
 }
 
 export const voteNotification = (anecdote) => {
-  console.log('voteNotification - anecdote: ', anecdote)
+  // console.log('voteNotification - anecdote: ', anecdote)
   return {
     type: 'VOTED',
     anecdote: anecdote

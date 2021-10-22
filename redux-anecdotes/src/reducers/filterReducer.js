@@ -3,7 +3,7 @@ const filterAtStart = {
 }
 
 const filterReducer = (state = filterAtStart, action) => {
-  console.log('filterReducer state', state)
+  // console.log('filterReducer state', state)
   // console.log('filterReducer action', action)
   switch (action.type) {
     case 'CHANGE_FILTER':

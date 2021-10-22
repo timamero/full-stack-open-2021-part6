@@ -6,8 +6,15 @@ import anecdoteServices from '../services/anecdotes'
 
 const AnecdoteList = () => {
   const filter = useSelector(state => state.filter.value)
-  const anecdotes = useSelector(state => state.anecdotes.filter(anecdote => anecdote.content.includes(filter)))
+  const anecdotes = useSelector(state => {
+    console.log('useSelector anecdotes', state.anecdotes)
+    if (filter) {
+      return state.anecdotes.filter(anecdote => anecdote.content.includes(filter))
+    }
+    return state.anecdotes
+  })
   const dispatch = useDispatch()
+  console.log('AnecdoteList - anecdotes', anecdotes)
 
   useEffect(() => {
     console.log('useEffect')
@@ -39,7 +46,9 @@ const AnecdoteList = () => {
 
   return (
     <div>
-      {anecdotes.map(anecdote =>
+      {anecdotes.map(anecdote => {
+        console.log('anecdote item - ', anecdote)
+        return (
         <div key={anecdote.id}>
           <div>
             {anecdote.content}
@@ -48,8 +57,8 @@ const AnecdoteList = () => {
             has {anecdote.votes}
             <button onClick={() => vote(anecdote.id)}>vote</button>
           </div>
-        </div>
-      )}
+        </div>)
+      })}
     </div>
   )
 }
