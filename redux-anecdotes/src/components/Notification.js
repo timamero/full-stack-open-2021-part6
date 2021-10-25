@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { noNotification } from '../reducers/notificationReducer'
+import { clearNotification } from '../reducers/notificationReducer'
 
 const Notification = () => {
   const dispatch = useDispatch()
@@ -14,7 +14,7 @@ const Notification = () => {
 
   useEffect(() => {
     if (notification.message) {
-      setTimeout(() => dispatch(noNotification()), 5000)
+      setTimeout(() => dispatch(clearNotification()), 5000)
     }
   })
 

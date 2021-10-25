@@ -19,7 +19,7 @@ const notificationReducer = (state = notificationAtStart, action) => {
   }
 }
 
-export const noNotification = () => {
+export const clearNotification = () => {
   return {
     type: 'NONE'
   }
