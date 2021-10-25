@@ -1,19 +1,12 @@
-const notificationAtStart = {
-  message: "Vote or add a new anecdote",
-  // anecdote: null
-}
-
-const notificationReducer = (state = notificationAtStart, action) => {
+const notificationReducer = (state = '', action) => {
   // console.log('state now: ', state)
   // console.log('action', action)
 
   switch (action.type) {
     case 'NONE':
       return { message: '' }
-    case 'VOTED':
-      return { message: `You voted for '${action.content}'` }
-    case 'CREATE_ANECDOTE':
-      return { message: 'New anecdote created'}
+    case 'SET':
+      return { message: action.data.message }
     default:
       return state
   }
@@ -25,17 +18,10 @@ export const clearNotification = () => {
   }
 }
 
-export const voteNotification = (content) => {
-  // console.log('voteNotification - anecdote: ', anecdote)
+export const setNotification = (message) => {
   return {
-    type: 'VOTED',
-    content: content
-  }
-}
-
-export const createAnecdoteNotification = () => {
-  return {
-    type: 'CREATE_ANECDOTE'
+    type: 'SET',
+    data: { message }
   }
 }
 
