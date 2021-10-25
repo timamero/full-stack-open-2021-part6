@@ -14,9 +14,14 @@ const AnecdoteList = () => {
   }, [dispatch])
 
   const vote = (id) => {
-    const anecdote = anecdotes.find(anecdote => anecdote.id === id).content
-    dispatch(voteOnAnecdote(id))
-    dispatch(voteNotification(anecdote))
+    const anecdote = anecdotes.find(anecdote => anecdote.id === id)
+    const updatedAnecdote = {
+      ...anecdote,
+      votes: ++anecdote.votes
+    }
+    // console.log('updatedAnecdote', updatedAnecdote)
+    dispatch(voteOnAnecdote(updatedAnecdote))
+    dispatch(voteNotification(updatedAnecdote.content))
   }
 
   const sortByVote = (a, b) => {
@@ -33,22 +38,21 @@ const AnecdoteList = () => {
 
   let sortedAnecdotes = anecdotes.sort(sortByVote)
   
-  console.log('sortedAnecdotes', sortedAnecdotes)
+  // console.log('sortedAnecdotes', sortedAnecdotes)
 
   return (
     <div>
       {anecdotes.map(anecdote => {
-        console.log('anecdote item - ', anecdote)
         return (
-        <div key={anecdote.id}>
-          <div>
-            {anecdote.content}
-          </div>
-          <div>
-            has {anecdote.votes}
-            <button onClick={() => vote(anecdote.id)}>vote</button>
-          </div>
-        </div>)
+          <div key={anecdote.id}>
+            <div>
+              {anecdote.content}
+            </div>
+            <div>
+              has {anecdote.votes}
+              <button onClick={() => vote(anecdote.id)}>vote</button>
+            </div>
+          </div>)
       })}
     </div>
   )
