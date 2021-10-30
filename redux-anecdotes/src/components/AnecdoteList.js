@@ -21,6 +21,7 @@ const AnecdoteList = () => {
     }
     dispatch(voteOnAnecdote(updatedAnecdote))
     dispatch(setNotification(`You voted for ${updatedAnecdote.content}`, 5000))
+    // dispatch(clearNotification())
   }
 
   const sortByVote = (a, b) => {
